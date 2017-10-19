@@ -1,12 +1,25 @@
-Template.body.events(
-  {
+var msgRecords = new Mongo.Collection("msgRecords");
+
+
+
+
+
+Template.body.events({
   "click #submitMsg": function(event) {
+     event.preventDefault();
+     var msg = document.getElementById("myMsg").value;
+     Meteor.call("processMsg", msg);
+  },
+  "click #resetMsg" : function(event) {
     event.preventDefault();
+    Meteor.call("resetELIZA");
+  }
+});
 
 
 
 
-    var formula = "5*5-150";
+/*    var formula = "5*5-150";
     var results = eval(formula);
     console.log(results);
 
@@ -29,7 +42,12 @@ Template.body.events(
 
 
 
-    var conversationBox = document.getElementById("conversationBox");
+
+
+
+
+
+    /*var conversationBox = document.getElementById("conversationBox");
 
     var allMsgs = conversationBox.value;
     //console.log(allMsgs);
@@ -58,5 +76,5 @@ Template.body.events(
   /*"click .buttons": function()
   {
     alert("Button clicked!");
-  },*/
-});
+  },
+});*/
