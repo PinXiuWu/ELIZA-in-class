@@ -1,14 +1,39 @@
 var msgRecords = new Mongo.Collection("msgRecords");
 
+Session.setDefault("x", 5);
+Session.setDefault("y", 10);
+//var x = 5, y = 10;
+
+Template.body.helpers({
+  xNum: function() {
+    return Session.get("x");
+  },
+  yNum: function() {
+    return Session.get("y");
+  },
+  multiplier: function() {
+    return Session.get("x")*Session.get("y");
+  },
+});
 
 
 
 
 Template.body.events({
+  "click #increaseX": function() {
+    var currentX = Session.get("x");
+    currentX = currentX+1;
+    Session.set("x", currentX);
+  },
+  "click #decreaseX": function() {
+    var currentX = Session.get("x");
+    currentX = currentX-1;
+    Session.set("x", currentX);
+  },
   "click #submitMsg": function(event) {
-     event.preventDefault();
-     var msg = document.getElementById("myMsg").value;
-     Meteor.call("processMsg", msg);
+    event.preventDefault();
+    var msg = document.getElementById("myMsg").value;
+    Meteor.call("processMsg", msg);
   },
   "click #resetMsg" : function(event) {
     event.preventDefault();

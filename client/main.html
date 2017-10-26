@@ -3,24 +3,30 @@
 </head>
 
 <body>
+
  <center>
-    <h1>This is PinXiu's ELIZA</h1>
-    <p>
+   The result of {{xNum}} * {{yNum}} is {{multiplier}}
+   <p>
+   <input type = "button" id = "increaseX" value = "Increase X">
+   <input type = "button" id = "decreaseX" value = "Decrease X">
+   </p>
+<!--Number One: {{numOne}}<br>
+   Number Two: {{numTwo}}<br>
+   Number One x Number Two: {{multiplier}} -->
+   <h1>
+      This is PinXiu's ELIZA.
+   </h1>
+   <p>
       <textarea id = "conversationBox" rows = "20" cols = "80" readonly>ELIZA: This is ELIZA. How are you?</textarea>
-      </p>
+   </p>
    <form>
-    <p>
-      <input type = "text" id = "myMsg" size = "80" placeholder = "Enter Your Message">
+      <p>
+         <input type = "text" id = "myMsg" size = "80" placeholder = "Enter Your Message">
       </p>
-    <p>
-      <input type = "submit" id = "submitMsg" value = "Submit">
-      <input type = "reset" id = "resetMsg" value = "Reset">
+      <p>
+        <input type = "submit" id = "submitMsg" value = "Submit">
+        <input type = "reset" id = "resetMsg" value = "Reset">
       </p>
    </form>
-
-   </center>
-
-
-
-
+  </center>
 </body>
