@@ -2,6 +2,8 @@ var msgRecords = new Mongo.Collection("msgRecords");
 
 Session.setDefault("msgSubmitted", false);
 Session.setDefault("msgSubmitting", false);
+var msgSubmitted = false;
+var msgSubmitting= false;
 
 
 //Session.setDefault("x", 5);
@@ -10,10 +12,13 @@ Session.setDefault("msgSubmitting", false);
 
 Template.body.helpers({
   msgSubmitted: function() {
-    return Session.get("msgSubmitted");
+    //return Session.get("msgSubmitted");
+    return msgSubmitted;
   },
   msgSubmitting: function(){
-    return Session.set("msgSubmitting");
+    //return Session.set("msgSubmitting");
+    return msgSubmitting;
+
   },
   /*xNum: function() {
     return Session.get("x");
@@ -42,7 +47,8 @@ Template.body.events({
   },*/
   "click #submitMsg": function(event) {
     event.preventDefault();
-    Session.set("msgSubmitting", true);
+    //Session.set("msgSubmitting", true);
+    msgSubmitting = true;
     setTimeout(changeSession, 1000);
 
     var msg = document.getElementById("myMsg").value;
@@ -50,12 +56,13 @@ Template.body.events({
   },
   "click #resetMsg" : function(event) {
     event.preventDefault();
-    Session.set("msgSubmitted", false);
+    //Session.set("msgSubmitted", false);
+    msgSubmitted = false;
     Meteor.call("resetELIZA");
   }
 });
 
-var chageSession = function(){
+var changeSession = function(){
   Session.set("msgSubmitting", false);
   Session.set("msgSubmitted", true);
 

@@ -2,7 +2,7 @@
   <title>PinXiu's ELIZA</title>
 </head>
 
-<body>q
+<body>
 
  <center>
    <!-- The result of {{xNum}} * {{yNum}} is {{multiplier}}
@@ -24,11 +24,13 @@
          <input type = "text" id = "myMsg" size = "80" placeholder = "Enter Your Message">
       </p>
       <p>
-        {{#if msgSubmitted}}
-         You just submitted a message!
+        {{#if msgSubmitting}}
+          Submitting...
+        {{else}}{{#if msgSubmitted}}
+          You just submitted a message!
         {{else}}
-         Type what you want to submitted.
-        {{/if}}
+          Type what you want to submitted.
+        {{/if}}{{/if}}
       </p>
       <p>
         <input type = "submit" id = "submitMsg" value = "Submit">
