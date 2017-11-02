@@ -12,12 +12,12 @@ var msgSubmitting= false;
 
 Template.body.helpers({
   msgSubmitted: function() {
-    //return Session.get("msgSubmitted");
-    return msgSubmitted;
+    return Session.get("msgSubmitted");
+
   },
   msgSubmitting: function(){
-    //return Session.set("msgSubmitting");
-    return msgSubmitting;
+    return Session.set("msgSubmitting");
+
 
   },
   /*xNum: function() {
@@ -47,17 +47,15 @@ Template.body.events({
   },*/
   "click #submitMsg": function(event) {
     event.preventDefault();
-    //Session.set("msgSubmitting", true);
-    msgSubmitting = true;
-    setTimeout(changeSession, 1000);
+    Session.set("msgSubmitting", true);
+    setTimeout(changeSession, 5000);
 
     var msg = document.getElementById("myMsg").value;
     Meteor.call("msgReceiver", msg);
   },
   "click #resetMsg" : function(event) {
     event.preventDefault();
-    //Session.set("msgSubmitted", false);
-    msgSubmitted = false;
+    Session.set("msgSubmitted", false);
     Meteor.call("resetELIZA");
   }
 });
