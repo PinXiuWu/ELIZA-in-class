@@ -1,11 +1,21 @@
 var msgRecords = new Mongo.Collection("msgRecords");
 
-Session.setDefault("x", 5);
-Session.setDefault("y", 10);
+Session.setDefault("msgSubmitted", false);
+Session.setDefault("msgSubmitting", false);
+
+
+//Session.setDefault("x", 5);
+//Session.setDefault("y", 10);
 //var x = 5, y = 10;
 
 Template.body.helpers({
-  xNum: function() {
+  msgSubmitted: function() {
+    return Session.get("msgSubmitted");
+  },
+  msgSubmitting: function(){
+    return Session.set("msgSubmitting");
+  },
+  /*xNum: function() {
     return Session.get("x");
   },
   yNum: function() {
@@ -13,14 +23,14 @@ Template.body.helpers({
   },
   multiplier: function() {
     return Session.get("x")*Session.get("y");
-  },
+  },*/
 });
 
 
 
 
 Template.body.events({
-  "click #increaseX": function() {
+   /*"click #increaseX": function() {
     var currentX = Session.get("x");
     currentX = currentX+1;
     Session.set("x", currentX);
@@ -29,19 +39,27 @@ Template.body.events({
     var currentX = Session.get("x");
     currentX = currentX-1;
     Session.set("x", currentX);
-  },
+  },*/
   "click #submitMsg": function(event) {
     event.preventDefault();
+    Session.set("msgSubmitting", true);
+    setTimeout(changeSession, 1000);
+
     var msg = document.getElementById("myMsg").value;
-    Meteor.call("processMsg", msg);
+    Meteor.call("msgReceiver", msg);
   },
   "click #resetMsg" : function(event) {
     event.preventDefault();
+    Session.set("msgSubmitted", false);
     Meteor.call("resetELIZA");
   }
 });
 
+var chageSession = function(){
+  Session.set("msgSubmitting", false);
+  Session.set("msgSubmitted", true);
 
+}
 
 
 /*    var formula = "5*5-150";

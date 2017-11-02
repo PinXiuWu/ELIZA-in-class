@@ -2,14 +2,14 @@
   <title>PinXiu's ELIZA</title>
 </head>
 
-<body>
+<body>q
 
  <center>
-   The result of {{xNum}} * {{yNum}} is {{multiplier}}
+   <!-- The result of {{xNum}} * {{yNum}} is {{multiplier}}
    <p>
    <input type = "button" id = "increaseX" value = "Increase X">
    <input type = "button" id = "decreaseX" value = "Decrease X">
-   </p>
+ </p> -->
 <!--Number One: {{numOne}}<br>
    Number Two: {{numTwo}}<br>
    Number One x Number Two: {{multiplier}} -->
@@ -22,6 +22,13 @@
    <form>
       <p>
          <input type = "text" id = "myMsg" size = "80" placeholder = "Enter Your Message">
+      </p>
+      <p>
+        {{#if msgSubmitted}}
+         You just submitted a message!
+        {{else}}
+         Type what you want to submitted.
+        {{/if}}
       </p>
       <p>
         <input type = "submit" id = "submitMsg" value = "Submit">
