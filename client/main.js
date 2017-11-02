@@ -1,10 +1,7 @@
 var msgRecords = new Mongo.Collection("msgRecords");
 
-Session.setDefault("msgSubmitted", false);
-Session.setDefault("msgSubmitting", false);
-
-
-
+/*Session.setDefault("msgSubmitted", false);
+Session.setDefault("msgSubmitting", false);*/
 //Session.setDefault("x", 5);
 //Session.setDefault("y", 10);
 //var x = 5, y = 10;
@@ -27,15 +24,14 @@ Template.body.helpers({
     }
     return msgTexts;
   },
-  msgSubmitted: function() {
+  /*msgSubmitted: function() {
     return Session.get("msgSubmitted");
 
   },
   msgSubmitting: function(){
     return Session.set("msgSubmitting");
-
-
-  },
+  },*/
+  
   /*xNum: function() {
     return Session.get("x");
   },
@@ -63,24 +59,24 @@ Template.body.events({
   },*/
   "click #submitMsg": function(event) {
     event.preventDefault();
-    Session.set("msgSubmitting", true);
-    setTimeout(changeSession, 2500);
+    //Session.set("msgSubmitting", true);
+    //setTimeout(changeSession, 2500);*/
 
     var msg = document.getElementById("myMsg").value;
     Meteor.call("msgReceiver", msg);
   },
   "click #resetMsg" : function(event) {
     event.preventDefault();
-    Session.set("msgSubmitted", false);
+    //Session.set("msgSubmitted", false);
     Meteor.call("resetELIZA");
   }
 });
 
-var changeSession = function(){
+/*var changeSession = function(){
   Session.set("msgSubmitting", false);
   Session.set("msgSubmitted", true);
+ }*/
 
-}
 
 
 /*    var formula = "5*5-150";

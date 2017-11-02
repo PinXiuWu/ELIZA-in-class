@@ -1,12 +1,8 @@
-var msgRecords = new Mongo.Collection("msgRecords");
+msgRecords = new Mongo.Collection("msgRecords");
 
-var processMsg = function() {
+/*var processMsg = function() {
   return;
-};
-
-
-
-
+};*/
 
 Meteor.methods(
   {
@@ -19,17 +15,47 @@ Meteor.methods(
           time: msgTime
         }
       );
-      var allMsgs = msgRecords.find({});
+
+      processMsg(msg);
+
+      /*var allMsgs = msgRecords.find({});
       allMsgs = allMsgs.fetch();
-      console.log(allMsgs);
+      console.log(allMsgs);*/
       return;
     },
     resetELIZA: function() {
         msgRecords.remove({});
+        msgRecords.insert(
+          {
+            speaker: "ELIZA",
+            msg: "ELIZA: I'm ELIZA. How are you doing?",
+            time: new Date()
+          }
+        )
         return;
       }
   }
 );
+
+
+//以下是期末專題最重要的部分
+var processMsg = function(msg) {
+  var processResult = "";
+
+  processResult = "Hello world!";
+
+  msgRecords.insert(
+    {
+      speaker: "ELIZA",
+      msg: processResult,
+      time: new Date()
+    }
+  );
+};
+
+
+
+
 
 
 
