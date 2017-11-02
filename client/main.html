@@ -1,3 +1,4 @@
+
 <head>
   <title>PinXiu's ELIZA</title>
 </head>
@@ -17,11 +18,11 @@
       This is PinXiu's ELIZA.
    </h1>
    <p>
-      <textarea id = "conversationBox" rows = "20" cols = "80" readonly>ELIZA: This is ELIZA. How are you?</textarea>
+     <textarea id = "conversationBox" rows = "20" cols = "80" readonly>{{allMsgs}}</textarea>
    </p>
    <form>
       <p>
-         <input type = "text" id = "myMsg" size = "80" placeholder = "Enter Your Message">
+        <input type = "text" id = "myMsg" size = "80" placeholder = "Enter Your Message">
       </p>
       <p>
         {{#if msgSubmitting}}
@@ -33,8 +34,8 @@
         {{/if}}{{/if}}
       </p>
       <p>
-        <input type = "submit" id = "submitMsg" value = "Submit">
-        <input type = "reset" id = "resetMsg" value = "Reset">
+        <input type = "submit" class = button id = "submitMsg" value = "Submit">
+        <input type = "reset" class = bytton id = "resetMsg" value = "Reset">
       </p>
    </form>
   </center>

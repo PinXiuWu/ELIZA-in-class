@@ -2,8 +2,7 @@ var msgRecords = new Mongo.Collection("msgRecords");
 
 Session.setDefault("msgSubmitted", false);
 Session.setDefault("msgSubmitting", false);
-var msgSubmitted = false;
-var msgSubmitting= false;
+
 
 
 //Session.setDefault("x", 5);
@@ -11,6 +10,23 @@ var msgSubmitting= false;
 //var x = 5, y = 10;
 
 Template.body.helpers({
+  allMsgs: function() {
+    var msgTexts = "";
+    var allMsgs = msgRecords.find({}, {sort: {time: 1}}); //若({})內沒有物件，代表搜尋所有msgRecords的內容。sort的時間用1是正排序，-1是反)
+    allMsgs = allMsgs.fetch();
+    if(allMsgs.length > 0)
+    {
+      for (index = 0; index < allMsgs.length ; index++)
+      {
+        msgTexts = msgTexts+allMsgs[index].speaker+": "+allMsgs[index].msg+"\n";
+      }
+    }
+    else
+    {
+      msgTexts = "ELIZA: Hello, how are you doing?"
+    }
+    return msgTexts;
+  },
   msgSubmitted: function() {
     return Session.get("msgSubmitted");
 
@@ -48,7 +64,7 @@ Template.body.events({
   "click #submitMsg": function(event) {
     event.preventDefault();
     Session.set("msgSubmitting", true);
-    setTimeout(changeSession, 5000);
+    setTimeout(changeSession, 2500);
 
     var msg = document.getElementById("myMsg").value;
     Meteor.call("msgReceiver", msg);
